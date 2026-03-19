@@ -1,9 +1,5 @@
-let input = require('fs').readFileSync('2438.txt').toString().trim().split('\n');
+// 배열
+let input = require('fs').readFileSync('2438.txt').toString().trim().split('\n'); 
 
-
-for(let i = 0; i < input.length; i++) {
-  const [a,b] = input[i].split(' ').map(Number);
-
-  if (a === 0 && b === 0) break;
-  console.log(a+b);
-}
+// 문자열
+let input = require('fs').readFileSync('1152.txt').toString().trim(); 
