@@ -312,7 +312,7 @@ console.log(limStudent.getScore());
 function timerTest() {
   // var는 변수 재선언의 허용 ->  똑같은 이름의 변수를 여러 번 선언해도 에러를 내지 않음
   // let으로 바꾼 후 i의 값만 재할당 해줘야함
-    for (let i = 0; i < 3; i++) { // 0부터 시작하기 때문에 i는 0,1,2 
+    for (var i = 0; i < 3; i++) { // 0부터 시작하기 때문에 i는 0,1,2 
       setTimeout(function() {
         console.log(i); // 0.1초마다 i값을 콘솔 로그로 실행
       }, 100);
