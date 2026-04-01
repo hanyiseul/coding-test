@@ -422,3 +422,99 @@ console.log(countActivities(userLogs));
   console.log("정상 데이터 검증:", verify("중요한 데이터", storedHash)); // true
   console.log("변조 데이터 검증:", verify("중요한 데이터 변경", storedHash)); // false
 }
+
+{
+  class ChainingHashTable {
+      constructor(size = 5) {
+          this.table = new Array(size);
+          for (let i = 0; i < size; i++) {
+              this.table[i] = [];
+          }
+      }
+
+      hash(key) {
+          let sum = 0;
+          for (let i = 0; i < key.length; i++) {
+              sum += key.charCodeAt(i);
+          }
+          return sum % this.table.length;
+      }
+
+      set(key, value) {
+          const index = this.hash(key);
+          this.table[index].push({ key: key, value: value });
+      }
+
+      get(key) {
+          const index = this.hash(key);
+          const bucket = this.table[index];
+
+          for (let i = 0; i < bucket.length; i++) {
+              if (bucket[i].key === key) {
+                  return bucket[i].value;
+              }
+          }
+
+          return null;
+      }
+
+      print() {
+          console.log(this.table);
+      }
+  }
+
+  const fileTable = new ChainingHashTable(10);
+
+  // 1. 아주 긴 텍스트(데이터) 자체를 키로 사용합니다.
+  const bigData1 = "이것은 매우 용량이 크고 복잡한 문서 데이터의 내용입니다...";
+  const bigData2 = "또 다른 별개의 리서치 자료 내용입니다...";
+
+  // 2. 데이터 자체를 키로 삼아 관련 정보(메타데이터)를 저장합니다.
+  fileTable.set(bigData1, { author: "홍길동", date: "2023-10-27", type: "PDF" });
+  fileTable.set(bigData2, { author: "이순신", date: "2023-11-01", type: "DOCX" });
+
+  // 3. 데이터를 다시 넣기만 하면, 그 데이터가 어디에 저장되었는지 몰라도 즉시 정보를 찾아옵니다.
+  console.log("--- 데이터 기반 즉시 조회 ---");
+  const searchResult = fileTable.get(bigData1);
+  console.log("찾은 정보:", searchResult);
+
+  // 4. 내용이 조금이라도 다르면 조회되지 않으므로 무결성 확인도 동시에 됩니다.
+  console.log("내용 변경 시 조회 결과:", fileTable.get("다른 내용")); // null
+}
+
+{
+  const crypto = require('crypto');
+
+  // SHA-256 해시 함수 정의
+  function sha256(data) {
+      return crypto.createHash('sha256').update(data).digest('hex');
+  }
+  
+  function hashWithSalt(password, salt) {
+      return sha256(password + salt);
+  }
+  
+  const salt = "ABC123";
+
+  const user = {
+      id: "user1",
+      // 문자열 비밀번호를 해시화하여 저장
+      passwordHash: hashWithSalt("1234", salt)
+  };
+
+  function login(inputPw) {
+      // 입력받은 비밀번호를 똑같은 방식으로 해시화
+      const inputHash = hashWithSalt(inputPw, salt);
+      
+      // 해시값끼리 비교 (원본 비밀번호는 알 수 없음)
+      if (inputHash === user.passwordHash) {
+          console.log("로그인 성공");
+      } else {
+          console.log("로그인 실패");
+      }
+  }
+
+  login("1234"); // 성공
+  login("1111"); // 실패
+  
+}
