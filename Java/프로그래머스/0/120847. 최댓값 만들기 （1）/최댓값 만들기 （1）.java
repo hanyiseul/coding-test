@@ -8,9 +8,6 @@ class Solution {
                 if(numbers[i]*numbers[j] > result && i!=j) {
                     result = numbers[i]*numbers[j];
                 }
-                if(numbers.length == 2) {
-                    result = numbers[i]*numbers[j];
-                }
             }
         }
         
