@@ -1,5 +1,5 @@
 class Solution {
-    public double solution(int balls, int share) {
+    public int solution(int balls, int share) {
         double answer = 0;
         
         double n = 1;
@@ -18,6 +18,6 @@ class Solution {
         }
         
         answer = n/(nm*m);
-        return (int)Math.round(answer);
+        return (int) Math.round(answer);
     }
 }
