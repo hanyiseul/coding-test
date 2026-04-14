@@ -1,9 +1,7 @@
 import java.util.ArrayList;
-
 class Solution {
     public ArrayList<Integer> solution(int n) {
         ArrayList<Integer> tmpList = new ArrayList<>();
-        ArrayList<Integer> answer = new ArrayList<>();
         
         while (n > 1) { 
             for (int i = 2; i <= n; i++) { 
@@ -14,12 +12,6 @@ class Solution {
                 }
             } 
         }
-        
-        for(int num : tmpList) {
-            if (!answer.contains(num)) {
-                answer.add(num);
-            }
-        }
-        return answer;
+        return tmpList;
     }
 }
