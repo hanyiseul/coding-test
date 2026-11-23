@@ -1,6 +1,6 @@
 # [Bronze V] 사칙연산 - 10869 
 
-[문제 링크](https://www.acmicpc.net/problem/10869) 
+[문제 링크](https://acmicpc.net/problem/10869) 
 
 ### 성능 요약
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-구현, 사칙연산, 수학
+사칙연산, 구현, 수학
 
 ### 제출 일자
 
